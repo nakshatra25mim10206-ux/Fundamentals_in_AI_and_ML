@@ -1,7 +1,8 @@
 # Project Statement
 
 **Project:** Pathfinding Algorithm Visualizer
-**Author:** [Your Full Name]
+
+**Author:** Nakshatra Kundnani
 
 ---
 
