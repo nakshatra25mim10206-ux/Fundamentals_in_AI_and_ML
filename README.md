@@ -114,7 +114,7 @@ Since `astar()`, `bfs()`, and `dfs()` are plain functions of `(grid, start, end)
 
 ```
 maze-solver/
-├── Maze_Solving.py    # Main application
+├── Maze_Solving.py   # Main application
 ├── requirements.txt  # Dependencies
 ├── statement.md      # Problem statement, scope, target users
 └── README.md         # This file
