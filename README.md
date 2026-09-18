@@ -60,7 +60,7 @@ This project makes that visible: a random maze is generated on every run, and th
 
 ```bash
 git clone https://github.com/<your-username>/maze-solver.git
-cd maze-solver
+cd Maze_Solving
 pip install -r requirements.txt
 ```
 
@@ -70,17 +70,17 @@ pip install -r requirements.txt
 
 ```bash
 # Default (21x21 maze, medium speed)
-python maze_solver.py
+python Maze_Solving.py
 
 # Custom maze size
-python maze_solver.py --size 31
+python Maze_Solving.py --size 31
 
 # Animation speed
-python maze_solver.py --speed fast
-python maze_solver.py --speed slow
+python Maze_Solving.py --speed fast
+python Maze_Solving.py --speed slow
 
 # Combine
-python maze_solver.py --size 25 --speed fast
+python Maze_Solving.py --size 25 --speed fast
 ```
 
 ### Controls
@@ -114,7 +114,7 @@ Since `astar()`, `bfs()`, and `dfs()` are plain functions of `(grid, start, end)
 
 ```
 maze-solver/
-├── maze_solver.py    # Main application
+├── Maze_Solving.py    # Main application
 ├── requirements.txt  # Dependencies
 ├── statement.md      # Problem statement, scope, target users
 └── README.md         # This file
