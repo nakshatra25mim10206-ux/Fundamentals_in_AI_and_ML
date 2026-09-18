@@ -1,1 +1,12 @@
-pygame>=2.5.0
+ requirements.txt — Pathfinding Algorithm Visualizer
+
+ Install with:
+   pip install -r requirements.txt
+
+ Python 3.8+ is required (the project uses dataclasses, type hints,
+ and f-strings — all standard library, no extra install needed for those).
+
+ --- Core dependency -------------------------------------------------------
+ Pygame powers the rendering window, event loop, and keyboard input.
+ Version 2.5.0+ is required for the SysFont/font-rendering APIs used here.
+ pygame>=2.5.0,<3.0.0
