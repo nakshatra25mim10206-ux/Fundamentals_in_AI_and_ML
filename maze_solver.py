@@ -20,7 +20,6 @@ MAZE_RECURSION_LIMIT = 5000
 
 
 class Palette:
-    """RGB colors used by the renderer, grouped in one place for easy tweaking."""
     BLACK    = (10,  10,  20)
     WHITE    = (220, 220, 230)
     WALL     = (30,  30,  50)
@@ -33,12 +32,6 @@ class Palette:
     HINT     = (100, 100, 130)
 
 def generate_maze(rows: int, cols: int) -> List[List[int]]:
-    """Carve a perfect maze with randomized recursive backtracking.
-
-    Returns a grid of 0s (wall) and 1s (open passage). Carving happens in
-    strides of 2 so that odd-indexed cells are rooms and even-indexed
-    cells are the walls between them.
-    """
     grid = [[0] * cols for _ in range(rows)]
 
     def carve(r: int, c: int) -> None:
@@ -57,7 +50,6 @@ def generate_maze(rows: int, cols: int) -> List[List[int]]:
 
 
 def neighbors(grid: List[List[int]], r: int, c: int) -> Iterator[Cell]:
-    """Yield the open, in-bounds cells adjacent to (r, c)."""
     rows, cols = len(grid), len(grid[0])
     for dr, dc in ((-1, 0), (1, 0), (0, -1), (0, 1)):
         nr, nc = r + dr, c + dc
@@ -66,7 +58,6 @@ def neighbors(grid: List[List[int]], r: int, c: int) -> Iterator[Cell]:
 
 
 def reconstruct_path(came_from: Dict[Cell, Cell], node: Cell) -> List[Cell]:
-    """Walk the came_from chain backwards from `node` to the start cell."""
     trail = [node]
     while node in came_from:
         node = came_from[node]
@@ -176,7 +167,6 @@ def cell_color(
     frontier: Set[Cell],
     visited: Set[Cell],
 ) -> Tuple[int, int, int]:
-    """Pick a cell's fill color; order encodes drawing priority."""
     if pos == start:
         return Palette.START
     if pos == end:
@@ -219,7 +209,6 @@ def draw(
 
 @dataclass
 class SolverState:
-    """The running (or finished) search, and everything needed to draw it."""
     generator: Optional[Iterator[SolverStep]] = None
     visited: Set[Cell] = field(default_factory=set)
     frontier: Set[Cell] = field(default_factory=set)
@@ -230,18 +219,15 @@ class SolverState:
         self, name: str, solver: SolverFn,
         grid: List[List[int]], start_cell: Cell, end_cell: Cell,
     ) -> str:
-        """Begin a fresh search and return the status label for it."""
         self.generator = solver(grid, start_cell, end_cell)
         self.visited, self.frontier, self.path = set(), set(), []
         self.paused = False
         return f"Running {name} ..."
 
     def reset(self) -> None:
-        """Clear any in-progress or finished search (e.g. for a new maze)."""
         self.generator, self.visited, self.frontier, self.path = None, set(), set(), []
 
     def advance(self, steps: int) -> Optional[str]:
-        """Step the generator forward. Returns a new label, or None if unchanged."""
         if not self.generator or self.paused:
             return None
 
